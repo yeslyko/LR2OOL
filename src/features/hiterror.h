@@ -8,6 +8,7 @@
 namespace hiterror {
     inline bool open = false;
     inline bool open_config = false;
+    inline bool enabled = true;
 
     inline bool bg_enabled = false;
     inline bool hovered = false;

@@ -24,9 +24,6 @@
     <ClCompile Include="src\init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\overlay\hiterror.cpp">
-      <Filter>Source Files\overlay</Filter>
-    </ClCompile>
     <ClCompile Include="src\overlay\imguistyle.cpp">
       <Filter>Source Files\overlay</Filter>
     </ClCompile>
@@ -53,6 +50,11 @@
     <ClCompile Include="src\hooks\replayfix.cpp" />
     <ClCompile Include="src\hooks\updategamestate.cpp" />
     <ClCompile Include="src\hooks\judgement.cpp" />
+    <ClCompile Include="src\features\hiterror.cpp" />
+    <ClCompile Include="src\features\greennumber.cpp" />
+    <ClCompile Include="src\hooks\drawnum.cpp" />
+    <ClCompile Include="src\hooks\slider.cpp" />
+    <ClCompile Include="src\hooks\loadbms.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h">
@@ -65,9 +67,6 @@
       <Filter>Source Files\overlay</Filter>
     </ClInclude>
     <ClInclude Include="src\overlay\imguistyle.h">
-      <Filter>Source Files\overlay</Filter>
-    </ClInclude>
-    <ClInclude Include="src\overlay\hiterror.h">
       <Filter>Source Files\overlay</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\statistics.h">
@@ -90,5 +89,10 @@
     <ClInclude Include="src\hooks\replayfix.h" />
     <ClInclude Include="src\hooks\updategamestate.h" />
     <ClInclude Include="src\hooks\judgement.h" />
+    <ClInclude Include="src\features\hiterror.h" />
+    <ClInclude Include="src\features\greennumber.h" />
+    <ClInclude Include="src\hooks\drawnum.h" />
+    <ClInclude Include="src\hooks\slider.h" />
+    <ClInclude Include="src\hooks\loadbms.h" />
   </ItemGroup>
 </Project>

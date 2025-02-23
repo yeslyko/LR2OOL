@@ -35,6 +35,9 @@ void overlay::DrawMainWindow()
         ImGui::SameLine(); HelpMarker("Patches GAS replays to use the gauge you ended with, will do nothing if gauge doesn't change.");
 
         ImGui::SeparatorText("Hit Error");
+        ImGui::Checkbox("Enabled", &hiterror::enabled);
+        ImGui::BeginDisabled(!hiterror::enabled);
+
         ImGui::Checkbox("Show In Menu", &hiterror::open_config);
         ImGui::SameLine(); HelpMarker("This lets you view hit error bar whenever the menu is opened.");
         ImGui::Checkbox("Use EMA", &hiterror::using_ema);
@@ -52,14 +55,16 @@ void overlay::DrawMainWindow()
         ImGui::SliderFloat("EMA Alpha", &hiterror::ema.alpha, 0.0f, 1.0f);
         ImGui::EndDisabled();
         ImGui::SameLine(); HelpMarker("Higher alpha values cause the value of ema to shift more dramatically.");
+        
+        ImGui::EndDisabled();
 
 
         ImGuiColorEditFlags flags = ImGuiColorEditFlags_PickerHueWheel | ImGuiColorEditFlags_DisplayRGB | ImGuiColorEditFlags_NoOptions;
         ImGui::SeparatorText("Colors");
-        ImGui::BeginDisabled(!hiterror::using_ema);
+        ImGui::BeginDisabled(!hiterror::using_ema || !hiterror::enabled);
         ColorEdit3U32("EMA", &hiterror::colors::ema, flags);
         ImGui::EndDisabled();
-        ImGui::BeginDisabled(hiterror::using_ema);
+        ImGui::BeginDisabled(hiterror::using_ema || !hiterror::enabled);
         ColorEdit3U32("P-Great", &hiterror::colors::pgreat, flags);
         ColorEdit3U32("Great", &hiterror::colors::great, flags);
         ColorEdit3U32("Good", &hiterror::colors::good, flags);

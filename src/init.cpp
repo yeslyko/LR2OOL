@@ -24,7 +24,7 @@ void Setup(HMODULE hModule)
 
     /*
      * checks for f / s patch
-     * eventually should move away from requiring it..
+     * eventually should move away from requiring it...
      * however it makes life much easier
      */
     if (*(int*)(0x44FAE3) == 0xCCCCCCCC) {
@@ -35,13 +35,16 @@ void Setup(HMODULE hModule)
     config::LoadConfig();
     hooks::Setup();
 
-    while(!GetAsyncKeyState(VK_END)) {
+    while (!GetAsyncKeyState(VK_END)) {
+
+
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
 cleanup:
     dx9::Destroy();
     gui::Destroy();
+    hooks::Destroy();
 
     FreeLibraryAndExitThread(hModule, 0);
 }

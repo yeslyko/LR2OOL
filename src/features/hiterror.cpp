@@ -5,7 +5,7 @@
 
 void hiterror::Render()
 {
-    if (hiterror::open || (hiterror::open_config && overlay::open)) {
+    if ((hiterror::open || (hiterror::open_config && overlay::open)) && hiterror::enabled) {
         ImGui::SetNextWindowBgAlpha(0.35f);
         ImGui::SetNextWindowSize(ImVec2{ (float)width, (float)height });
 

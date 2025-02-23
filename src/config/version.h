@@ -1,5 +1,5 @@
 #pragma once
 
 inline struct  {
-	int major = 0, minor = 2, patch = 2;
+	int major = 0, minor = 3, patch = 0;
 } version;

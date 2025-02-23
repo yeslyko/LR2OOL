@@ -33,6 +33,7 @@ void config::LoadConfig()
             IF_HAS_THEN_READ_INT("hit_error", "height", hiterror::height);
             IF_HAS_THEN_READ_INT("hit_error", "thickness", hiterror::thickness);
             IF_HAS_THEN_READ_BOOL("hit_error", "ema", hiterror::using_ema);
+            IF_HAS_THEN_READ_BOOL("hit_error", "enabled", hiterror::enabled);
             IF_HAS_THEN_READ_BOOL("hit_error", "smooth", hiterror::smooth_ema);
             IF_HAS_THEN_READ_INT("hit_error", "lines", hiterror::lines);
         }
@@ -60,6 +61,7 @@ void config::SaveConfig() {
     SET_INT("hit_error", "lines", hiterror::lines);
     SET_BOOL("hit_error", "ema", hiterror::using_ema);
     SET_BOOL("hit_error", "smoothed", hiterror::smooth_ema);
+    SET_BOOL("hit_error", "enabled", hiterror::enabled);
 
     SET_INT_16("colors", "ema", hiterror::colors::ema);
     SET_INT_16("colors", "pgreat", hiterror::colors::ema);

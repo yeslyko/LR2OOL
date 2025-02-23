@@ -1,6 +1,8 @@
 #pragma once
 #include <safetyhook.hpp>
 #include "utils/statistics.h"
+#include "features/greennumber.h"
+
 
 namespace hooks::srcnumber {
     namespace offsets {
@@ -17,8 +19,8 @@ namespace hooks::srcnumber {
     inline SafetyHookInline src_number_hook;
     int SrcNumber(uintptr_t* data_ptr, int id);
 
-    int GetWhole(double num);
-    int GetDecimal(double num);
+    int inline GetWhole(double num);
+    int inline GetDecimal(double num);
 
     void Install();
     void Reset();

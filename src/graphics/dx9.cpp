@@ -13,8 +13,9 @@ HRESULT __stdcall dx9::hook_end_scene(IDirect3DDevice9* device) noexcept
 {
     const auto result = end_scene_hook.stdcall<HRESULT>(device);
     
-    if (!gui::setup)
+    if (!gui::setup) {
         gui::SetupMenu(device);
+    }
 
     gui::Render();
 
@@ -25,7 +26,7 @@ HRESULT __stdcall dx9::hook_reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETER
 {
     ImGui_ImplDX9_InvalidateDeviceObjects();
     const auto result = reset_hook.stdcall<HRESULT>(device, params);
-    ImGui_ImplDX9_CreateDeviceObjects();
+    if(SUCCEEDED(result)) ImGui_ImplDX9_CreateDeviceObjects();
 
     return result;
 }
