@@ -156,6 +156,7 @@
     <ClCompile Include="src\features\greennumber.cpp" />
     <ClCompile Include="src\hooks\drawnum.cpp" />
     <ClCompile Include="src\hooks\judgement.cpp" />
+    <ClCompile Include="src\hooks\liftfix.cpp" />
     <ClCompile Include="src\hooks\loadbms.cpp" />
     <ClCompile Include="src\hooks\slider.cpp" />
     <ClCompile Include="src\hooks\updategamestate.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="src\hooks\hooks.h" />
     <ClInclude Include="src\hooks\cursor.h" />
     <ClInclude Include="src\hooks\judgement.h" />
+    <ClInclude Include="src\hooks\liftfix.h" />
     <ClInclude Include="src\hooks\loadbms.h" />
     <ClInclude Include="src\hooks\slider.h" />
     <ClInclude Include="src\hooks\updategamestate.h" />

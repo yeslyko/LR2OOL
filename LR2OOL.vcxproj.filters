@@ -55,6 +55,7 @@
     <ClCompile Include="src\hooks\drawnum.cpp" />
     <ClCompile Include="src\hooks\slider.cpp" />
     <ClCompile Include="src\hooks\loadbms.cpp" />
+    <ClCompile Include="src\hooks\liftfix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h">
@@ -94,5 +95,6 @@
     <ClInclude Include="src\hooks\drawnum.h" />
     <ClInclude Include="src\hooks\slider.h" />
     <ClInclude Include="src\hooks\loadbms.h" />
+    <ClInclude Include="src\hooks\liftfix.h" />
   </ItemGroup>
 </Project>

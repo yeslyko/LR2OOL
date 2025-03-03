@@ -4,8 +4,9 @@
 
 namespace drawnum {
 	namespace offsets {
-		const inline uintptr_t draw_num = 0x49e060;
-		const inline uintptr_t adjust_y = 0x111F88;
+		const inline uintptr_t draw_num = 0x49E060;
+		const inline uintptr_t judge_y = 0x111F70;
+		const inline uintptr_t ghost_setting = 0xFF8A0;
 	}
 
 	inline SafetyHookInline draw_hook;

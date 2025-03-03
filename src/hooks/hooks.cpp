@@ -7,6 +7,7 @@
 #include "hooks/drawnum.h"
 #include "hooks/slider.h"
 #include "hooks/loadbms.h"
+#include "hooks/liftfix.h"
 
 
 void hooks::Setup()
@@ -19,6 +20,7 @@ void hooks::Setup()
     drawnum::Install();
     slider::Install();
     loadbms::Install();
+    liftfix::Install();
 }
 
 void hooks::Destroy()
