@@ -2,8 +2,7 @@
 
 void liftfix::hook_draw_ln(safetyhook::Context& ctx)
 {
-	/* TODO: fix this ASAP, this doesn't work for 2p */
-	*(float*)(ctx.esp + 0x20) += *(int*)offsets::adjust_y;
+	*(float*)(ctx.esp + 0x20) += ctx.esi < 10 ? *(int*)offsets::adjust_y1 : *(int*)offsets::adjust_y2;
 }
 
 void liftfix::Install()
