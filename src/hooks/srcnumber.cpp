@@ -1,29 +1,41 @@
 #include <math.h>
 #include "srcnumber.h"
+#include "updategamestate.h"
 
 int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
 {
-    int pgreat_count_in_game = src_number_hook.call<int>(data_ptr, 110);
-    int great_count_in_game  = src_number_hook.call<int>(data_ptr, 111);
-    int good_count_in_game   = src_number_hook.call<int>(data_ptr, 112);
-    int bad_count_in_game    = src_number_hook.call<int>(data_ptr, 113);
-    int poor_count_in_game   = src_number_hook.call<int>(data_ptr, 114);
+    int pgreat_count{}, great_count{}, good_count{}, bad_count{}, poor_count{};
 
-    int sum = pgreat_count_in_game + great_count_in_game + good_count_in_game + bad_count_in_game + poor_count_in_game;
+    if (updategamestate::gamestate == updategamestate::GAMESTATE::playing || updategamestate::gamestate == updategamestate::GAMESTATE::result) {
+        pgreat_count = src_number_hook.call<int>(data_ptr, 110);
+        great_count = src_number_hook.call<int>(data_ptr, 111);
+        good_count = src_number_hook.call<int>(data_ptr, 112);
+        bad_count = src_number_hook.call<int>(data_ptr, 113);
+        poor_count = src_number_hook.call<int>(data_ptr, 114);
+    }
+    else if(updategamestate::gamestate == updategamestate::GAMESTATE::select) {
+        pgreat_count = src_number_hook.call<int>(data_ptr, 80);
+        great_count = src_number_hook.call<int>(data_ptr, 81);
+        good_count = src_number_hook.call<int>(data_ptr, 82);
+        bad_count = src_number_hook.call<int>(data_ptr, 83);
+        poor_count = src_number_hook.call<int>(data_ptr, 84);
+    }
+
+    int sum = pgreat_count + great_count + good_count + bad_count + poor_count;
     if (!sum) sum = 1; // to prevent dbz
 
-    double pgreat_ratio = (double) pgreat_count_in_game / great_count_in_game;
-    double great_ratio  = (double) great_count_in_game / good_count_in_game;
+    double pgreat_ratio = (double)pgreat_count / great_count;
+    double great_ratio  = (double)great_count / good_count;
 
-    double pgreat_percent = (double) pgreat_count_in_game / sum * 100.0;
-    double great_percent  = (double) great_count_in_game / sum * 100.0;
-    double good_percent   = (double) good_count_in_game / sum * 100.0;
-    double bad_percent    = (double) bad_count_in_game / sum * 100.0;
-    double poor_percent   = (double) poor_count_in_game / sum * 100.0;
+    double pgreat_percent = (double) pgreat_count / sum * 100.0;
+    double great_percent  = (double) great_count / sum * 100.0;
+    double good_percent   = (double) good_count / sum * 100.0;
+    double bad_percent    = (double) bad_count / sum * 100.0;
+    double poor_percent   = (double) poor_count / sum * 100.0;
 
 
     switch (id) {
-    case 295: // current random
+    case 295: // 1p current random
     {
         uint32_t current_random = 0;
 
@@ -54,7 +66,10 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         return GetWhole(GreenNumber::GetWhiteNumber());
         break;
     case 304: // min green number
+        return GetWhole(GreenNumber::GetMinGreenNumber());
+        break;
     case 305: // max green number
+        return GetWhole(GreenNumber::GetMaxGreenNumber());
         break;
     case 400: // whole part of pgreat ratio
         return GetWhole(pgreat_ratio);
@@ -105,11 +120,23 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         return GetDecimal(GreenNumber::GetWhiteNumber());
         break;
     case 416: // whole part of lift number
-        return GetWhole(GreenNumber::GetLiftNumber());
+        return GetWhole(GreenNumber::GetLiftNumberP1());
         break;
     case 417: // decimal part of lift number
-        return GetDecimal(GreenNumber::GetLiftNumber());
+        return GetDecimal(GreenNumber::GetLiftNumberP1());
         break;
+    case 418: // 2p random
+    {
+        uint32_t current_random = 0;
+
+        int* note_positions = reinterpret_cast<int*>(offsets::random);
+        for (int i = 10; i < 17; i++) {
+            current_random += (i + 1 - 10) * pow(10, 17 - note_positions[i]);
+        }
+
+        return current_random;
+        break;
+    }
     default:
         return src_number_hook.call<int>(data_ptr, id);
         break;

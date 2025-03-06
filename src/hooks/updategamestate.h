@@ -7,8 +7,13 @@ namespace hooks::updategamestate {
 	};
 	/* todo: fill this out with other values */
 	enum class GAMESTATE {
-		playing = 2
+		select = 0,
+		decide = 1,
+		playing = 2,
+		result = 3
 	};
+
+	inline GAMESTATE gamestate = GAMESTATE::select;
 
 	inline SafetyHookMid gamestate_hook;
 

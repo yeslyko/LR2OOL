@@ -6,7 +6,8 @@
 namespace GreenNumber {
 	namespace Offsets {
 		ciu skin_struct = 0x108358;
-		ciu draw_ptr = 0x89CC;
+		ciu draw_ptr_p1 = 0x89CC;
+		ciu draw_ptr_p2 = 0x89F8;
 		ciu y = 0x4;
 		ciu h = 0xC;
 
@@ -14,7 +15,8 @@ namespace GreenNumber {
 		ciu cover = 0xFF858;
 		ciu basespeed = 0xFF8D0;
 
-		ciu adjust_y = 0x111F88;
+		ciu adjust_y1 = 0x111F88;
+		ciu adjust_y2 = 0x111F90;
 		ciu adjust_h = 0x111F80;
 
 		ciu max_bpm = 0x19F520;
@@ -26,8 +28,13 @@ namespace GreenNumber {
 	}
 
 	double GetGreenNumber();
+	double GetMinGreenNumber();
+	double GetMaxGreenNumber();
 	double GetWhiteNumber();
-	double GetLiftNumber();
+	double GetLiftNumberP1();
+	double GetLiftNumberP2();
+
+	void UpdateVariables();
 }
 
 #undef ciu
