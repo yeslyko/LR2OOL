@@ -7,10 +7,10 @@
 #include "features/hiterror.h"
 
 /* macro_hell */
-#define IF_HAS_THEN_READ(section, label, variable_to_set, formatter) if(ini[section].has(label)) variable_to_set = formatter
-#define IF_HAS_THEN_READ_BOOL(section, label, variable_to_set) IF_HAS_THEN_READ(section, label, variable_to_set, ini[section][label] == "true" ? true : false)
-#define IF_HAS_THEN_READ_INT(section, label, variable_to_set) IF_HAS_THEN_READ(section, label, variable_to_set, stoi(ini[section][label]))
-#define IF_HAS_THEN_READ_INT_16(section, label, variable_to_set) IF_HAS_THEN_READ(section, label, variable_to_set, stoi(ini[section][label], nullptr, 16))
+#define READ(section, label, variable_to_set, formatter) if(ini[section].has(label)) variable_to_set = formatter
+#define READ_BOOL(section, label, variable_to_set) READ(section, label, variable_to_set, ini[section][label] == "true" ? true : false)
+#define READ_INT(section, label, variable_to_set) READ(section, label, variable_to_set, stoi(ini[section][label]))
+#define READ_INT_16(section, label, variable_to_set) READ(section, label, variable_to_set, stoi(ini[section][label], nullptr, 16))
 
 #define TS_BOOL(x) x ? "true" : "false"
 #define TS_INT(x) std::to_string(x)
@@ -24,26 +24,26 @@ void config::LoadConfig()
 {
     if (file.read(ini)) {
         if(ini.has("hooks")) {
-            IF_HAS_THEN_READ_BOOL("hooks", "mirror", hooks::mirror::enabled);
-            IF_HAS_THEN_READ_BOOL("hooks", "replay", hooks::replayfix::enabled);
+            READ_BOOL("hooks", "mirror", hooks::mirror::enabled);
+            READ_BOOL("hooks", "replay", hooks::replayfix::enabled);
         }
 
         if(ini.has("hit_error")) {
-            IF_HAS_THEN_READ_INT("hit_error", "width", hiterror::width);
-            IF_HAS_THEN_READ_INT("hit_error", "height", hiterror::height);
-            IF_HAS_THEN_READ_INT("hit_error", "thickness", hiterror::thickness);
-            IF_HAS_THEN_READ_BOOL("hit_error", "ema", hiterror::using_ema);
-            IF_HAS_THEN_READ_BOOL("hit_error", "enabled", hiterror::enabled);
-            IF_HAS_THEN_READ_BOOL("hit_error", "smooth", hiterror::smooth_ema);
-            IF_HAS_THEN_READ_INT("hit_error", "lines", hiterror::lines);
+            READ_INT("hit_error", "width", hiterror::width);
+            READ_INT("hit_error", "height", hiterror::height);
+            READ_INT("hit_error", "thickness", hiterror::thickness);
+            READ_INT("hit_error", "lines", hiterror::lines);
+            READ_BOOL("hit_error", "ema", hiterror::using_ema);
+            READ_BOOL("hit_error", "enabled", hiterror::enabled);
+            READ_BOOL("hit_error", "smoothed", hiterror::smooth_ema);
         }
         
         if(ini.has("colors")) {
-            IF_HAS_THEN_READ_INT_16("colors", "ema", hiterror::colors::ema);
-            IF_HAS_THEN_READ_INT_16("colors", "pgreat", hiterror::colors::pgreat);
-            IF_HAS_THEN_READ_INT_16("colors", "great", hiterror::colors::great);
-            IF_HAS_THEN_READ_INT_16("colors", "good", hiterror::colors::good);
-            IF_HAS_THEN_READ_INT_16("colors", "cb", hiterror::colors::cb);
+            READ_INT_16("colors", "ema", hiterror::colors::ema);
+            READ_INT_16("colors", "pgreat", hiterror::colors::pgreat);
+            READ_INT_16("colors", "great", hiterror::colors::great);
+            READ_INT_16("colors", "good", hiterror::colors::good);
+            READ_INT_16("colors", "cb", hiterror::colors::cb);
         }
     }
     else {
@@ -64,18 +64,18 @@ void config::SaveConfig() {
     SET_BOOL("hit_error", "enabled", hiterror::enabled);
 
     SET_INT_16("colors", "ema", hiterror::colors::ema);
-    SET_INT_16("colors", "pgreat", hiterror::colors::ema);
-    SET_INT_16("colors", "great", hiterror::colors::ema);
-    SET_INT_16("colors", "good", hiterror::colors::ema);
-    SET_INT_16("colors", "cb", hiterror::colors::ema);
+    SET_INT_16("colors", "pgreat", hiterror::colors::pgreat);
+    SET_INT_16("colors", "great", hiterror::colors::great);
+    SET_INT_16("colors", "good", hiterror::colors::good);
+    SET_INT_16("colors", "cb", hiterror::colors::cb);
 
     file.write(ini, true);
 }
 
-#undef IF_HAS_THEN_READ
-#undef IF_HAS_THEN_READ_BOOL
-#undef IF_HAS_THEN_READ_INT
-#undef IF_HAS_THEN_READ_INT_16
+#undef READ
+#undef READ_BOOL
+#undef READ_INT
+#undef READ_INT_16
 
 #undef TS_BOOL
 #undef TS_INT
