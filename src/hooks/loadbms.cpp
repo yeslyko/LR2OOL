@@ -16,8 +16,8 @@ static void read_fpu_and_sum(safetyhook::Context& ctx) {
 void loadbms::Install()
 {
 	using namespace safetyhook;
-	reset_hook = create_mid(offsets::reset, [](safetyhook::Context& ctx) { count = 0, sum = 0; });
-	reset_hook = create_mid(offsets::sum, [](safetyhook::Context& ctx) {
+	reset_hook = create_mid(offsets::reset, [](safetyhook::Context& ctx) { count = 0; sum = 0; });
+	sum_hook = create_mid(offsets::sum, [](safetyhook::Context& ctx) {
 		count++;
 		read_fpu_and_sum(ctx);
 	});
