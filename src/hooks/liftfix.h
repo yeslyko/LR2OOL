@@ -12,6 +12,6 @@ namespace liftfix {
 
 	inline SafetyHookMid draw_ln_hook;
 
-	void hook_draw_ln(safetyhook::Context& ctx);
+	void DrawLN(safetyhook::Context& ctx);
 	void Install();
 }

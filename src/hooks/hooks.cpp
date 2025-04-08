@@ -8,7 +8,7 @@
 #include "hooks/slider.h"
 #include "hooks/loadbms.h"
 #include "hooks/liftfix.h"
-
+#include "hooks/dstflag.h"
 
 void hooks::Setup()
 {
@@ -21,6 +21,7 @@ void hooks::Setup()
     slider::Install();
     loadbms::Install();
     liftfix::Install();
+    dstflag::Install();
 }
 
 void hooks::Destroy()

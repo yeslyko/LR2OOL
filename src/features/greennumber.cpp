@@ -1,8 +1,6 @@
 #include "greennumber.h"
 #include "hooks/loadbms.h"
 
-using namespace GreenNumber;
-
 uintptr_t draw_ptr;
 float line_y;
 float line_h;
@@ -27,7 +25,7 @@ inline double GreenNumberFormula(double hispeed) {
 }
 
 /* this is mega retarded, but it works for now. refactor needed! */
-void GreenNumber::UpdateVariables()
+void greennumber::UpdateVariables()
 {
 	draw_ptr = *(uintptr_t*)(Offsets::skin_struct + Offsets::draw_ptr_p1);
 	line_y = *(float*)(draw_ptr + Offsets::y);
@@ -50,7 +48,7 @@ void GreenNumber::UpdateVariables()
 	hispeed = *(int*)(Offsets::hispeed);
 }
 
-double GreenNumber::GetGreenNumber()
+double greennumber::GetGreenNumber()
 {
 	UpdateVariables();
 
@@ -71,7 +69,7 @@ double GreenNumber::GetGreenNumber()
 	return green_number;
 }
 
-double GreenNumber::GetMinGreenNumber()
+double greennumber::GetMinGreenNumber()
 {
 	UpdateVariables();
 
@@ -94,7 +92,7 @@ double GreenNumber::GetMinGreenNumber()
 	return green_number;
 }
 
-double GreenNumber::GetMaxGreenNumber()
+double greennumber::GetMaxGreenNumber()
 {
 	UpdateVariables();
 
@@ -117,13 +115,13 @@ double GreenNumber::GetMaxGreenNumber()
 	return green_number;
 }
 
-double GreenNumber::GetWhiteNumber()
+double greennumber::GetWhiteNumber()
 {
 	auto cover = *(int*)(Offsets::cover);
 	return cover * 10;
 }
 
-double GreenNumber::GetLiftNumberP1()
+double greennumber::GetLiftNumberP1()
 {
 	uintptr_t draw_ptr = *(uintptr_t*)(Offsets::skin_struct + Offsets::draw_ptr_p1);
 	auto line_y = *(float*)(draw_ptr + Offsets::y);
@@ -134,7 +132,7 @@ double GreenNumber::GetLiftNumberP1()
 	return lift * 1000;
 }
 
-double GreenNumber::GetLiftNumberP2()
+double greennumber::GetLiftNumberP2()
 {
 	uintptr_t draw_ptr = *(uintptr_t*)(Offsets::skin_struct + Offsets::draw_ptr_p2);
 	auto line_y = *(float*)(draw_ptr + Offsets::y);

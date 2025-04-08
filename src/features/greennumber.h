@@ -3,7 +3,7 @@
 
 #define ciu const inline uintptr_t
 
-namespace GreenNumber {
+namespace greennumber {
 	namespace Offsets {
 		ciu skin_struct = 0x108358;
 		ciu draw_ptr_p1 = 0x89CC;

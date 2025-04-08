@@ -155,6 +155,7 @@
     <ClCompile Include="src\config\config.cpp" />
     <ClCompile Include="src\features\greennumber.cpp" />
     <ClCompile Include="src\hooks\drawnum.cpp" />
+    <ClCompile Include="src\hooks\dstflag.cpp" />
     <ClCompile Include="src\hooks\judgement.cpp" />
     <ClCompile Include="src\hooks\liftfix.cpp" />
     <ClCompile Include="src\hooks\loadbms.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\graphics\dx9.h" />
     <ClInclude Include="src\features\hiterror.h" />
     <ClInclude Include="src\hooks\drawnum.h" />
+    <ClInclude Include="src\hooks\dstflag.h" />
     <ClInclude Include="src\hooks\hooks.h" />
     <ClInclude Include="src\hooks\cursor.h" />
     <ClInclude Include="src\hooks\judgement.h" />

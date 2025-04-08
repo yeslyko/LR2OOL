@@ -15,7 +15,7 @@ __declspec(naked) int LiftSliderP1(void) {
 		push esi
 	}	
 
-	lift_number_p1 = GreenNumber::GetLiftNumberP1();
+	lift_number_p1 = greennumber::GetLiftNumberP1();
 
 	__asm {
 		pop esi
@@ -55,7 +55,7 @@ __declspec(naked) int LiftSliderP2(void) {
 		push esi
 	}
 
-	lift_number_p2 = GreenNumber::GetLiftNumberP2();
+	lift_number_p2 = greennumber::GetLiftNumberP2();
 
 	__asm {
 		pop esi

@@ -1,6 +1,7 @@
 #include <math.h>
 #include "srcnumber.h"
 #include "updategamestate.h"
+#include "hooks/dstflag.h"
 
 int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
 {
@@ -51,79 +52,79 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         return GetWhole(mean.GetMean());
         break;
     case 297: // decimal part of mean
-        return GetDecimal(mean.GetMean());
+        return GetDecimal(mean.GetMean(), 2);
         break;
     case 298: // whole part of stddev
         return GetWhole(stddev.GetPopulationStandardDeviation());
         break;
     case 299: // decimal part of stddev
-        return GetDecimal(stddev.GetPopulationStandardDeviation());
+        return GetDecimal(stddev.GetPopulationStandardDeviation(), 2);
         break;
     case 302: // green number
-        return GetWhole(GreenNumber::GetGreenNumber());
+        return GetWhole(greennumber::GetGreenNumber());
         break;
     case 303: // white number
-        return GetWhole(GreenNumber::GetWhiteNumber());
+        return GetWhole(greennumber::GetWhiteNumber());
         break;
     case 304: // min green number
-        return GetWhole(GreenNumber::GetMinGreenNumber());
+        return GetWhole(greennumber::GetMinGreenNumber());
         break;
     case 305: // max green number
-        return GetWhole(GreenNumber::GetMaxGreenNumber());
+        return GetWhole(greennumber::GetMaxGreenNumber());
         break;
     case 400: // whole part of pgreat ratio
         return GetWhole(pgreat_ratio);
         break;
     case 401: // decimal part of pgreat ratio
-        return GetDecimal(pgreat_ratio);
+        return GetDecimal(pgreat_ratio, 2);
         break;
     case 402: // whole part of great ratio
         return GetWhole(great_ratio);
         break;
     case 403: // decimal part of great ratio
-        return GetDecimal(great_ratio);
+        return GetDecimal(great_ratio, 2);
         break;
     case 404: // whole percentage of pgreats
         return GetWhole(pgreat_percent);
         break;
     case 405: // decimal percentage of pgreats
-        return GetDecimal(pgreat_percent);
+        return GetDecimal(pgreat_percent, 2);
         break;
     case 406: // whole percentage of greats
         return GetWhole(great_percent);
         break;
     case 407: // decimal percentage of greats
-        return GetDecimal(great_percent);
+        return GetDecimal(great_percent, 2);
         break;
     case 408: // whole percentage of goods
         return GetWhole(good_percent);
         break;
     case 409: // decimal percentage of goods
-        return GetDecimal(good_percent);
+        return GetDecimal(good_percent, 2);
         break;
     case 410: // whole percentage of bads
         return GetWhole(bad_percent);
         break;
     case 411: // decimal percentage of bads
-        return GetDecimal(bad_percent);
+        return GetDecimal(bad_percent, 2);
         break;
     case 412: // whole percentage of poors
         return GetWhole(poor_percent);
         break;
     case 413: // decimal percentage of poors
-        return GetDecimal(poor_percent);
+        return GetDecimal(poor_percent, 2);
         break;
     case 414: // decimal part of green number
-        return GetDecimal(GreenNumber::GetGreenNumber());
+        return GetDecimal(greennumber::GetGreenNumber(), 2);
         break;
     case 415: // decimal part of white number
-        return GetDecimal(GreenNumber::GetWhiteNumber());
+        return GetDecimal(greennumber::GetWhiteNumber(), 2);
         break;
     case 416: // whole part of lift number
-        return GetWhole(GreenNumber::GetLiftNumberP1());
+        return GetWhole(greennumber::GetLiftNumberP1());
         break;
     case 417: // decimal part of lift number
-        return GetDecimal(GreenNumber::GetLiftNumberP1());
+        return GetDecimal(greennumber::GetLiftNumberP1(), 2);
         break;
     case 418: // 2p random
     {
@@ -137,10 +138,25 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         return current_random;
         break;
     }
+    case 419: /* Custom gauge whole */
+    {
+        return GetWhole(*(double*)(offsets::game_offset + offsets::hp_offset));
+        break;
+    }
+    case 420: /* custom gauge decimal 1 place */
+    {
+        return GetDecimal(*(double*)(offsets::game_offset + offsets::hp_offset), 1);
+        break;
+    }
+    case 421: /* custom gauge decimal 2 places */
+    {
+        return GetDecimal(*(double*)(offsets::game_offset + offsets::hp_offset), 2);
+    }
     default:
         return src_number_hook.call<int>(data_ptr, id);
         break;
     }
+
     return 0;
 }
 
@@ -149,9 +165,9 @@ inline int hooks::srcnumber::GetWhole(double num)
     return static_cast<int>(num);
 }
 
-inline int hooks::srcnumber::GetDecimal(double num)
+inline int hooks::srcnumber::GetDecimal(double num, size_t number_of_places)
 {
-    return abs(static_cast<int>(100 * (num - static_cast<int>(num))));
+    return abs(static_cast<int>(pow(10, number_of_places) * (num - static_cast<int>(num))));
 }
 
 void hooks::srcnumber::Install()

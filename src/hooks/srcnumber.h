@@ -8,6 +8,8 @@ namespace hooks::srcnumber {
     namespace offsets {
         const inline uintptr_t src_number = 0x4024D0;
         const inline uintptr_t random = 0xDC35C;
+        const inline uintptr_t game_offset = 0xFF838;
+        const inline uintptr_t hp_offset = 0x979C8;
     }
 
     /* data pointers */
@@ -20,7 +22,7 @@ namespace hooks::srcnumber {
     int SrcNumber(uintptr_t* data_ptr, int id);
 
     int inline GetWhole(double num);
-    int inline GetDecimal(double num);
+    inline int GetDecimal(double num, size_t number_of_places);
 
     void Install();
     void Reset();

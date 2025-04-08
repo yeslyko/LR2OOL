@@ -56,6 +56,7 @@
     <ClCompile Include="src\hooks\slider.cpp" />
     <ClCompile Include="src\hooks\loadbms.cpp" />
     <ClCompile Include="src\hooks\liftfix.cpp" />
+    <ClCompile Include="src\hooks\dstflag.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h">
@@ -96,5 +97,6 @@
     <ClInclude Include="src\hooks\slider.h" />
     <ClInclude Include="src\hooks\loadbms.h" />
     <ClInclude Include="src\hooks\liftfix.h" />
+    <ClInclude Include="src\hooks\dstflag.h" />
   </ItemGroup>
 </Project>
