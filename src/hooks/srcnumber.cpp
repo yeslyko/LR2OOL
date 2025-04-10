@@ -152,6 +152,12 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
     {
         return GetDecimal(*(double*)(offsets::game_offset + offsets::hp_offset), 2);
     }
+    case 422: /* Total Judgements */
+    {
+        /* PGREAT + GREAT + GOOD + BAD (not including poors due to them being ambigious) */
+        return src_number_hook.call<int>(data_ptr, 33) + src_number_hook.call<int>(data_ptr, 34) + src_number_hook.call<int>(data_ptr, 35) + src_number_hook.call<int>(data_ptr, 36);
+        break;
+    }
     default:
         return src_number_hook.call<int>(data_ptr, id);
         break;
