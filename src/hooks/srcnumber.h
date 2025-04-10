@@ -3,6 +3,7 @@
 #include "utils/statistics.h"
 #include "features/greennumber.h"
 #include "features/timeplayed.h"
+#include "features/totaltime.h"
 
 namespace hooks::srcnumber {
     namespace offsets {
