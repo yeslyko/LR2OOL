@@ -2,7 +2,7 @@
 #include <safetyhook.hpp>
 #include "utils/statistics.h"
 #include "features/greennumber.h"
-
+#include "features/timeplayed.h"
 
 namespace hooks::srcnumber {
     namespace offsets {
@@ -18,12 +18,14 @@ namespace hooks::srcnumber {
     inline statistics::OnlineMean mean = statistics::OnlineMean();
     inline statistics::OnlineStandardDeviation stddev = statistics::OnlineStandardDeviation();
 
+    inline Timer timer;
+
     inline SafetyHookInline src_number_hook;
     int SrcNumber(uintptr_t* data_ptr, int id);
 
-    int inline GetWhole(double num);
+    inline int  GetWhole(double num);
     inline int GetDecimal(double num, size_t number_of_places);
-
+    
     void Install();
     void Reset();
 }

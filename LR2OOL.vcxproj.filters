@@ -58,6 +58,7 @@
     <ClCompile Include="src\hooks\liftfix.cpp" />
     <ClCompile Include="src\hooks\dstflag.cpp" />
     <ClCompile Include="src\hooks\input.cpp" />
+    <ClCompile Include="src\features\timeplayed.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h">
@@ -100,5 +101,6 @@
     <ClInclude Include="src\hooks\liftfix.h" />
     <ClInclude Include="src\hooks\dstflag.h" />
     <ClInclude Include="src\hooks\input.h" />
+    <ClInclude Include="src\features\timeplayed.h" />
   </ItemGroup>
 </Project>

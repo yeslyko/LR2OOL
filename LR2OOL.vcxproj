@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="src\config\config.cpp" />
     <ClCompile Include="src\features\greennumber.cpp" />
+    <ClCompile Include="src\features\timeplayed.cpp" />
     <ClCompile Include="src\hooks\drawnum.cpp" />
     <ClCompile Include="src\hooks\dstflag.cpp" />
     <ClCompile Include="src\hooks\input.cpp" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="src\config\config.h" />
     <ClInclude Include="src\features\greennumber.h" />
+    <ClInclude Include="src\features\timeplayed.h" />
     <ClInclude Include="src\graphics\gui.h" />
     <ClInclude Include="src\graphics\dx9.h" />
     <ClInclude Include="src\features\hiterror.h" />

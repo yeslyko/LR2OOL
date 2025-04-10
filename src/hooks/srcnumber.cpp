@@ -158,6 +158,20 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         return src_number_hook.call<int>(data_ptr, 33) + src_number_hook.call<int>(data_ptr, 34) + src_number_hook.call<int>(data_ptr, 35) + src_number_hook.call<int>(data_ptr, 36);
         break;
     }
+    case 423: /* I should move these into Timer... */
+    {
+        return timer.GetTime() % 60;
+        break;
+    }
+    case 424:
+    {
+        return timer.GetTime() / 60 % 60;
+        break;
+    }
+    case 425:
+    {
+        return timer.GetTime() / 3600;
+    }
     default:
         return src_number_hook.call<int>(data_ptr, id);
         break;
