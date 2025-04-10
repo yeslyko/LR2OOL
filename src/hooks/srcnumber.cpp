@@ -172,6 +172,18 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
     {
         return timer.GetTime() / 3600;
     }
+    case 426: /* made it while eating garlic biscuits */
+    {
+        return totaltime::GetSeconds();
+    }
+    case 427: 
+    {
+        return totaltime::GetMinutes();
+    }
+    case 428:
+    {
+        return totaltime::GetHours();
+    }
     default:
         return src_number_hook.call<int>(data_ptr, id);
         break;
