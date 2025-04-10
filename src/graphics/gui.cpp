@@ -241,8 +241,5 @@ LRESULT CALLBACK WindowProcess(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
         imgui_lParam = MAKELPARAM(mouse_pos.x, mouse_pos.y);
     }
 
-    if (overlay::open && ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, imgui_lParam))
-        return 1L;
-
     return CallWindowProc(gui::original_window_process, hWnd, msg, wParam, lParam);
 }

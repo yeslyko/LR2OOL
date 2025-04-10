@@ -57,6 +57,7 @@
     <ClCompile Include="src\hooks\loadbms.cpp" />
     <ClCompile Include="src\hooks\liftfix.cpp" />
     <ClCompile Include="src\hooks\dstflag.cpp" />
+    <ClCompile Include="src\hooks\input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config\config.h">
@@ -98,5 +99,6 @@
     <ClInclude Include="src\hooks\loadbms.h" />
     <ClInclude Include="src\hooks\liftfix.h" />
     <ClInclude Include="src\hooks\dstflag.h" />
+    <ClInclude Include="src\hooks\input.h" />
   </ItemGroup>
 </Project>

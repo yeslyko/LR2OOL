@@ -9,6 +9,7 @@
 #include "hooks/loadbms.h"
 #include "hooks/liftfix.h"
 #include "hooks/dstflag.h"
+#include "hooks/input.h"
 
 void hooks::Setup()
 {
@@ -22,6 +23,7 @@ void hooks::Setup()
     loadbms::Install();
     liftfix::Install();
     dstflag::Install();
+    input::Install();
 }
 
 void hooks::Destroy()
