@@ -2,6 +2,7 @@
 #include "srcnumber.h"
 #include "updategamestate.h"
 #include "hooks/dstflag.h"
+#include "hooks/loadbms.h"
 
 int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
 {
@@ -38,14 +39,7 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
     switch (id) {
     case 295: // 1p current random
     {
-        uint32_t current_random = 0;
-
-        int* note_positions = reinterpret_cast<int*>(offsets::random);
-        for (int i = 0; i < 7; i++) {
-            current_random += (i + 1) * pow(10, 7 - note_positions[i]);
-        }
-
-        return current_random;
+        return loadbms::random_1p;
         break;
     }
     case 296: // whole part of mean
@@ -128,14 +122,7 @@ int hooks::srcnumber::SrcNumber(uintptr_t* data_ptr, int id)
         break;
     case 418: // 2p random
     {
-        uint32_t current_random = 0;
-
-        int* note_positions = reinterpret_cast<int*>(offsets::random);
-        for (int i = 10; i < 17; i++) {
-            current_random += (i + 1 - 10) * pow(10, 17 - note_positions[i]);
-        }
-
-        return current_random;
+        return loadbms::random_2p;
         break;
     }
     case 419: /* Custom gauge whole */

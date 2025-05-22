@@ -1,6 +1,7 @@
 #define WIN32_LEAN_AND_MEAN
 #define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
+#include <VersionHelpers.h>
 #include <safetyhook.hpp>
 #include <chrono>
 
@@ -21,7 +22,7 @@ void Setup(HMODULE hModule)
         MessageBox(0, error.what(), "Error Occured", MB_OK | MB_ICONEXCLAMATION);
         goto cleanup;
     }
-
+    
     /*
      * checks for f / s patch
      * eventually should move away from requiring it...
