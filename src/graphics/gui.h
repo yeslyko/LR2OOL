@@ -19,6 +19,7 @@ namespace gui {
 
     // directX stuff
     inline LPDIRECT3DDEVICE9 device = nullptr;
+    inline LPDIRECT3DDEVICE9 dummyDevice = nullptr;
     inline LPDIRECT3D9 d3d9 = nullptr;
     inline int* internal_resolution = reinterpret_cast<int*>(offsets::internal_resolution);
 
@@ -35,6 +36,7 @@ namespace gui {
 
     void SetupMenu(LPDIRECT3DDEVICE9 device) noexcept;
     void Destroy();
+    void Reset(LPDIRECT3DDEVICE9 device);
 
     void Render();
 }

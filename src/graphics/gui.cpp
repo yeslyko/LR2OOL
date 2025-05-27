@@ -120,7 +120,7 @@ bool gui::SetupDirectX() noexcept
         window,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_DISABLE_DRIVER_MANAGEMENT,
         &params,
-        &device
+        &dummyDevice
     ) != S_OK)
         return false;
 
@@ -129,10 +129,10 @@ bool gui::SetupDirectX() noexcept
 
 void gui::DestroyDirectX() noexcept
 {
-    if (device)
+    if (dummyDevice)
     {
-        device->Release();
-        device = NULL;
+        dummyDevice->Release();
+        dummyDevice = NULL;
     }
 
     if (d3d9)
@@ -202,6 +202,21 @@ void gui::Destroy()
     );
 
     DestroyDirectX();
+}
+
+void gui::Reset(LPDIRECT3DDEVICE9 newDevice)
+{
+    D3DDEVICE_CREATION_PARAMETERS params;
+    newDevice->GetCreationParameters(&params);
+
+    ImGui_ImplWin32_Shutdown();
+    ImGui_ImplWin32_Init(params.hFocusWindow);
+
+    ImGui_ImplDX9_Shutdown();
+    ImGui_ImplDX9_Init(newDevice);
+
+    window = params.hFocusWindow;
+    device = newDevice;
 }
 
 void gui::Render()
