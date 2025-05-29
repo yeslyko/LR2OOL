@@ -17,6 +17,10 @@ HRESULT __stdcall dx9::hook_end_scene(IDirect3DDevice9* device) noexcept
         gui::SetupMenu(device);
     }
 
+    if (gui::device != device) {
+        gui::Reset(device);
+    }
+
     gui::Render();
 
     return result;
@@ -33,8 +37,8 @@ HRESULT __stdcall dx9::hook_reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETER
 
 void dx9::Setup()
 {
-    end_scene_hook = safetyhook::create_inline(VirtualFunction(gui::device, 42), reinterpret_cast<void*>(hook_end_scene));
-    reset_hook = safetyhook::create_inline(VirtualFunction(gui::device, 16), reinterpret_cast<void*>(hook_reset));
+    end_scene_hook = safetyhook::create_inline(VirtualFunction(gui::dummyDevice, 42), reinterpret_cast<void*>(hook_end_scene));
+    reset_hook = safetyhook::create_inline(VirtualFunction(gui::dummyDevice, 16), reinterpret_cast<void*>(hook_reset));
 }
 
 void dx9::Destroy() noexcept
