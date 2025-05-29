@@ -116,7 +116,7 @@ bool gui::SetupDirectX() noexcept
 
     if (d3d9->CreateDevice(
         D3DADAPTER_DEFAULT,
-        D3DDEVTYPE_NULLREF,
+        D3DDEVTYPE_HAL,
         window,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING | D3DCREATE_DISABLE_DRIVER_MANAGEMENT,
         &params,
